@@ -1,0 +1,12 @@
+.login-card {
+    margin-left: auto!important;
+    margin-right: auto!important;
+    float: none !important;
+}
+
+.login-card a {
+    margin-left: auto!important;
+    margin-right: auto!important;
+    display: block;
+    width: 95%;
+}
