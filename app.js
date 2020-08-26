@@ -1,3 +1,5 @@
+const path = require('path');
+
 const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
@@ -15,6 +17,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', require('./routes/index'));
