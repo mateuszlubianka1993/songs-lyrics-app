@@ -43,6 +43,7 @@ router.get('/songs', async(req, res, next) => {
         console.log(songs)
     } catch (error) {
         console.log(error);
+        res.render('errors/500')
     }
 });
 

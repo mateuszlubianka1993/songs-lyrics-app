@@ -11,6 +11,8 @@ const MongoStore = require('connect-mongo')(session);
 const connectDB = require('./config/db');
 const { Mongoose } = require('mongoose');
 
+const errorController = require('./controllers/error');
+
 dotenv.config({ path: './config/config.env' });
 
 require('./config/passport')(passport)
@@ -40,6 +42,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/auth', require('./routes/auth'));
+
+app.use(errorController.get404);
 
 const PORT = process.env.PORT || 3000;
 
