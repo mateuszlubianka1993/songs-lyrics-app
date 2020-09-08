@@ -12,4 +12,10 @@ router.get('/login', (req, res, next) => {
     res.render('login')
 });
 
+// Get/ Log out
+router.get('/logout', (req, res, next) => {
+    req.logout();
+    res.redirect('/');
+});
+
 module.exports = router;
