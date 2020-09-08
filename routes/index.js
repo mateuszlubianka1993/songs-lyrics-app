@@ -33,14 +33,13 @@ router.get('/add-song', async(req, res, next) => {
 });
 
 // Get/ songs
-router.get('/songs', async(req, res, next) => {
+router.get('/songs-list', async(req, res, next) => {
     try {
         const songs = await Song.find({ user: req.user.id }).lean();
         res.render('songs-list', {
             name: req.user.firstName,
             songs: songs
         })
-        console.log(songs)
     } catch (error) {
         console.log(error);
         res.render('errors/500')
