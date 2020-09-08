@@ -1,0 +1,19 @@
+<%- include('./includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/auth.css">
+    </head>
+    <%- include('./includes/nav.ejs') %>
+
+        <body>
+            <div class="container">
+                <h3 class="center">Songs list <i class="fas fa-music"></i></h3>
+                <h2>Hi
+                    <%=name%>!
+                </h2>
+                <%if(songs.length<=0){%>
+                    Empty list
+                    <%}else{%>
+                        LIST
+                        <%}%>
+            </div>
+
+            <%- include('./includes/end.ejs') %>
