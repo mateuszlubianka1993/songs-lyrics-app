@@ -30,4 +30,16 @@ router.get('/songs-list', async(req, res, next) => {
     }
 });
 
+// POST/ songs
+router.post('/', async(req, res, next) => {
+    try {
+        req.body.user = req.user.id;
+        await Song.create(req.body);
+        res.redirect('/songs/songs-list')
+    } catch (error) {
+        console.log(error);
+        res.render('errors/500')
+    }
+});
+
 module.exports = router;
