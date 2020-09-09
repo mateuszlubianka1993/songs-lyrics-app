@@ -12,7 +12,38 @@
                 <%if(songs.length<=0){%>
                     Empty list
                     <%}else{%>
-                        LIST
+                        <h3 class="center">Songs List</h3>
+
+
+
+                        <table class="striped">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Author</th>
+                                    <th>Created At</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <% songs.forEach(s => { %>
+                                    <tr>
+                                        <td>
+                                            <%= s.title %>
+                                        </td>
+                                        <td>
+                                            <%= s.author %>
+                                        </td>
+                                        <td>
+                                            <%= JSON.stringify(new Date(s.createdAt)).slice(1,11) %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+
+
+
                         <%}%>
             </div>
 
