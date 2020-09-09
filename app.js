@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', require('./routes/index'));
+app.use('/songs', require('./routes/songs'));
 app.use('/auth', require('./routes/auth'));
 
 app.use(errorController.get404);
