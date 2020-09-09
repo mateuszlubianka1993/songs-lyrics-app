@@ -19,8 +19,21 @@ router.get('/add-song', async(req, res, next) => {
 // Get/ songs
 router.get('/songs-list', async(req, res, next) => {
     try {
-        const songs = await Song.find({ user: req.user.id }).lean();
+        const songs = await Song.find().populate('user').sort({ createdAt: 'desc' }).lean();
         res.render('songs/songs-list', {
+            songs: songs
+        })
+    } catch (error) {
+        console.log(error);
+        res.render('errors/500')
+    }
+});
+
+// Get/ user songs
+router.get('/user-songs', async(req, res, next) => {
+    try {
+        const songs = await Song.find({ user: req.user.id }).lean();
+        res.render('songs/user-songs', {
             name: req.user.firstName,
             songs: songs
         })
