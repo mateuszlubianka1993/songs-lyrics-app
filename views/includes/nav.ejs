@@ -3,19 +3,27 @@
         <a href="/" class="brand-logo">Logo</a>
         <a href="/" data-target="mobile-demo" class="sidenav-trigger"><i class="fas fa-bars"></i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a href="/login">Log In</a></li>
-            <li><a href="/logout">Log Out</a></li>
-            <li><a href="/songs/add-song">Add Song</a></li>
-            <li><a href="/songs/songs-list">Songs</a></li>
-            <li><a href="/songs/user-songs">User Songs</a></li>
+            <% if (!isAuthenticated) { %>
+                <li><a href="/login">Log In</a></li>
+                <%}%>
+                    <li><a href="/songs/songs-list">Songs</a></li>
+                    <% if (isAuthenticated) { %>
+                        <li><a href="/logout">Log Out</a></li>
+                        <li><a href="/songs/user-songs">User Songs</a></li>
+                        <li><a href="/songs/add-song">Add Song</a></li>
+                        <%}%>
         </ul>
     </div>
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
-    <li><a href="/login">Log In</a></li>
-    <li><a href="/logout">Log Out</a></li>
-    <li><a href="/songs/add-song">Add Song</a></li>
-    <li><a href="/songs/songs-list">Songs</a></li>
-    <li><a href="/songs/user-songs">User Songs</a></li>
+    <% if (!isAuthenticated) { %>
+        <li><a href="/login">Log In</a></li>
+        <%}%>
+            <li><a href="/songs/songs-list">Songs</a></li>
+            <% if (isAuthenticated) { %>
+                <li><a href="/logout">Log Out</a></li>
+                <li><a href="/songs/user-songs">User Songs</a></li>
+                <li><a href="/songs/add-song">Add Song</a></li>
+                <%}%>
 </ul>

@@ -43,6 +43,11 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.isLoggedIn;
+    next();
+});
+
 // Routes
 app.use('/', require('./routes/index'));
 app.use('/songs', require('./routes/songs'));
