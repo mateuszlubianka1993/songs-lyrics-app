@@ -8,7 +8,7 @@ router.get('/google', passport.authenticate('google', { scope: ['profile'] }))
 
 // Get/ Auth Google callback
 router.get('/google/callback', passport.authenticate('google', { failureRedirect: '/login' }), (req, res, next) => {
-    if (req.user) {
+    if (req.isAuthenticated()) {
         req.session.isLoggedIn = true;
     }
     res.redirect('/')

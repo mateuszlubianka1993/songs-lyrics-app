@@ -4,8 +4,10 @@ const router = express.Router();
 
 const Song = require('../models/Song');
 
+const { ensureAuth } = require('../middleware/is-auth');
+
 // Get/ add-song
-router.get('/add-song', async(req, res, next) => {
+router.get('/add-song', ensureAuth, async(req, res, next) => {
     try {
         const songs = await Song.find({ user: req.user.id }).lean();
         res.render('songs/add-song', {
@@ -30,7 +32,7 @@ router.get('/songs-list', async(req, res, next) => {
 });
 
 // Get/ user songs
-router.get('/user-songs', async(req, res, next) => {
+router.get('/user-songs', ensureAuth, async(req, res, next) => {
     try {
         const songs = await Song.find({ user: req.user.id }).lean();
         res.render('songs/user-songs', {
