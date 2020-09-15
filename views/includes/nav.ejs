@@ -1,3 +1,11 @@
+<ul id="dropdown1" class="dropdown-content">
+    <li><a href="/logout">Log Out</a></li>
+    <li class="divider"></li>
+    <li><a href="/songs/user-songs">User Songs</a></li>
+    <li class="divider"></li>
+    <li><a href="/songs/add-song">Add Song</a></li>
+    <li class="divider"></li>
+</ul>
 <nav>
     <div class="nav-wrapper">
         <a href="/" class="brand-logo">Logo</a>
@@ -6,12 +14,10 @@
             <% if (!isAuthenticated) { %>
                 <li><a href="/login">Log In</a></li>
                 <%}%>
-                    <li><a href="/songs/songs-list">Songs</a></li>
                     <% if (isAuthenticated) { %>
-                        <li><a href="/logout">Log Out</a></li>
-                        <li><a href="/songs/user-songs">User Songs</a></li>
-                        <li><a href="/songs/add-song">Add Song</a></li>
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><i class="fas fa-user-circle fa-2x"></i></a></li>
                         <%}%>
+                            <li><a href="/songs/songs-list">Songs</a></li>
         </ul>
     </div>
 </nav>
@@ -19,11 +25,16 @@
 <ul class="sidenav" id="mobile-demo">
     <% if (!isAuthenticated) { %>
         <li><a href="/login">Log In</a></li>
+        <li class="divider"></li>
         <%}%>
             <li><a href="/songs/songs-list">Songs</a></li>
+            <li class="divider"></li>
             <% if (isAuthenticated) { %>
                 <li><a href="/logout">Log Out</a></li>
+                <li class="divider"></li>
                 <li><a href="/songs/user-songs">User Songs</a></li>
+                <li class="divider"></li>
                 <li><a href="/songs/add-song">Add Song</a></li>
+                <li class="divider"></li>
                 <%}%>
 </ul>
