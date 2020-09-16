@@ -37,16 +37,32 @@ router.get('/edit/:id', ensureAuth, async(req, res, next) => {
 
 // PUT/ /songs/:id
 router.put('/:id', ensureAuth, async(req, res, next) => {
-    let song = await Song.findById(req.params.id).lean();
-    if (!song) {
-        return res.render('errors/404');
-    } else {
-        song = await Song.findOneAndUpdate({ _id: req.params.id }, req.body, {
-            new: true,
-            runValidators: true
-        })
+    try {
+        let song = await Song.findById(req.params.id).lean();
+        if (!song) {
+            return res.render('errors/404');
+        } else {
+            song = await Song.findOneAndUpdate({ _id: req.params.id }, req.body, {
+                new: true,
+                runValidators: true
+            })
+        }
+        res.redirect('/songs/user-songs')
+    } catch (error) {
+        console.log(error);
+        return res.render('errors/500');
     }
-    res.redirect('/songs/user-songs')
+});
+
+// DELETE/ /songs/:id
+router.delete('/:id', ensureAuth, async(req, res, next) => {
+    try {
+        await Song.remove({ _id: req.params.id });
+        res.redirect('/songs/user-songs')
+    } catch (error) {
+        console.log(error);
+        return res.render('errors/500');
+    }
 });
 
 // Get/ songs
