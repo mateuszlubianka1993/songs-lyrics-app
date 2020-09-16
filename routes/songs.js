@@ -104,4 +104,21 @@ router.post('/', async(req, res, next) => {
     }
 });
 
+// Get/ songs/:id
+router.get('/:id', async(req, res, next) => {
+    try {
+        let song = await Song.findById(req.params.id).populate('user').lean();
+        if (!song) {
+            return res.render('errors/404');
+        } else {
+            res.render('songs/details', {
+                song
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        res.render('errors/404');
+    }
+});
+
 module.exports = router;

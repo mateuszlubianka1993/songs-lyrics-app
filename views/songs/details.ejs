@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/auth.css">
+    </head>
+    <%- include('../includes/nav.ejs') %>
+
+        <body>
+            <div class="container">
+                <div class="row">
+                    <div class="col s12 m8">
+                        <h2>
+                            <%=song.title%>
+                        </h2>
+                        <div class="divider"></div>
+                        <p>Created by:
+                            <%=song.user.firstName%>
+                        </p>
+                        <p>Created at:
+                            <%= JSON.stringify(new Date(song.createdAt)).slice(1,11) %>
+                        </p>
+                    </div>
+                    <div class="col s12 m4">
+                        <h3>
+                            <%=song.author%>
+                        </h3>
+                        <div class="video-container">
+                            <iframe width="853" height="480" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s12 m8">
+                        <div class="card">
+                            <div class="card-content">
+                                <span class="card-title"><%=song.title%> - <%=song.author%></span>
+                                <p>
+                                    <%-song.lyrics%>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <%- include('../includes/end.ejs') %>
