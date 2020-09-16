@@ -50,7 +50,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/', require('./routes/index'));
-app.use('/', require('./routes/songs'));
+app.use('/songs', require('./routes/songs'));
 app.use('/auth', require('./routes/auth'));
 
 app.use(errorController.get404);
