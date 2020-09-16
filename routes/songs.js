@@ -5,6 +5,7 @@ const router = express.Router();
 const Song = require('../models/Song');
 
 const { ensureAuth } = require('../middleware/is-auth');
+const { findOneAndUpdate } = require('../models/Song');
 
 // Get/ add-song
 router.get('/add-song', ensureAuth, async(req, res, next) => {
@@ -16,6 +17,36 @@ router.get('/add-song', ensureAuth, async(req, res, next) => {
     } catch (error) {
         console.log(error);
     }
+});
+
+// Get/ /songs/edit/:id
+router.get('/edit/:id', ensureAuth, async(req, res, next) => {
+    try {
+        const song = await Song.findOne({ _id: req.params.id }).lean();
+        if (!song) {
+            return res.render('errors/404');
+        } else {
+            res.render('songs/edit-song', {
+                song
+            })
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+// PUT/ /songs/:id
+router.put('/:id', ensureAuth, async(req, res, next) => {
+    let song = await Song.findById(req.params.id).lean();
+    if (!song) {
+        return res.render('errors/404');
+    } else {
+        song = await Song.findOneAndUpdate({ _id: req.params.id }, req.body, {
+            new: true,
+            runValidators: true
+        })
+    }
+    res.redirect('/songs/user-songs')
 });
 
 // Get/ songs
