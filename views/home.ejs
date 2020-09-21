@@ -3,6 +3,68 @@
     <%- include('./includes/nav.ejs') %>
 
         <body>
-            <h1>Hello world!</h1>
+            <div class="section">
+                <div class="row container">
+                    <h1 class="header">Songbook App</h1>
+                    <p class="grey-text text-darken-3 lighten-3">Hi! Join us, build your own songbook and play!</p>
+                </div>
+            </div>
+            <div class="parallax-container">
+                <div class="parallax"><img src="img/guitar.jpg"></div>
+            </div>
+            <div class="section white">
+                <div class="row container">
+                    <h3 class="header">New songs</h3>
+                    <p class="grey-text text-darken-3 lighten-3">Here you will find the last five added songs.</p>
 
+                    <%if(songs.length<=0){%>
+                        <h2 class="header">Empty list.</h2>
+                        <p class="grey-text text-darken-3 lighten-3">There are no songs here.</p>
+                        <%}else{%>
+
+                            <table class="striped">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Author</th>
+                                        <th>Created At</th>
+                                        <th>User</th>
+                                        <th>See Lyrics</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <% songs.forEach(s => { %>
+                                        <tr>
+                                            <td>
+                                                <%= s.title %>
+                                            </td>
+                                            <td>
+                                                <%= s.author %>
+                                            </td>
+                                            <td>
+                                                <%= JSON.stringify(new Date(s.createdAt)).slice(1,11) %>
+                                            </td>
+                                            <td>
+                                                <%= s.user.firstName %>
+                                            </td>
+                                            <td>
+                                                <a href="/songs/<%= s._id %>" class="waves-effect waves-light btn">See</a>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+
+
+
+                            <%}%>
+                </div>
+            </div>
+            <div class="parallax-container">
+                <div class="parallax"><img src="img/piano.jpg"></div>
+            </div>
+
+
+            <script src="/js/home.js"></script>
             <%- include('./includes/end.ejs') %>

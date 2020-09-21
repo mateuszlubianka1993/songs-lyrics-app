@@ -2,9 +2,19 @@ const express = require('express');
 
 const router = express.Router();
 
+const Song = require('../models/Song');
+
 // Get/ Home Page
-router.get('/', (req, res, next) => {
-    res.render('home')
+router.get('/', async(req, res, next) => {
+    try {
+        const songs = await Song.find().populate('user').sort({ _id: -1 }).limit(5).lean();
+        res.render('home', {
+            songs: songs
+        })
+    } catch (error) {
+        console.log(error);
+        res.render('errors/500')
+    }
 });
 
 // Get/ Home Page
