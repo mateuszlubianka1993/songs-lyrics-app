@@ -5,7 +5,7 @@
 
         <body>
             <div class="container">
-                <h3 class="center">Songs list <i class="fas fa-music"></i></h3>
+                <h3 class="center">Songs list <i class="fas fa-music green-text text-darken-4"></i></h3>
 
                 <%if(songs.length<=0){%>
                     <h2 class="header">Empty list.</h2>
@@ -39,7 +39,7 @@
                                             <%= s.user.firstName %>
                                         </td>
                                         <td>
-                                            <a href="/songs/<%= s._id %>" class="waves-effect waves-light btn">See</a>
+                                            <a href="/songs/<%= s._id %>" class="waves-effect waves-light btn green darken-4">See</a>
                                         </td>
                                     </tr>
                                     <% }) %>
